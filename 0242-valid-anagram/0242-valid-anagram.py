@@ -4,4 +4,7 @@ class Solution:
             return False 
         count = collections.Counter(s)
         count.subtract(collections.Counter(t))
-        return all(freq == 0 for freq in count.values())
+        for freq in count.values():
+            if freq != 0:
+                return False
+        return True 
