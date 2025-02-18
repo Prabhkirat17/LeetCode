@@ -1,10 +1,19 @@
-class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        if len(s) != len(t):
-            return False 
-        count = collections.Counter(s)
-        count.subtract(collections.Counter(t))
-        for freq in count.values():
-            if freq != 0:
-                return False
-        return True 
+class Solution {
+  public boolean isAnagram(String s, String t) {
+    if (s.length() != t.length())
+      return false;
+
+    int[] count = new int[26];
+
+    for (final char c : s.toCharArray())
+      ++count[c - 'a'];
+
+    for (final char c : t.toCharArray()) {
+      if (count[c - 'a'] == 0)
+        return false;
+      --count[c - 'a'];
+    }
+
+    return true;
+  }
+}
